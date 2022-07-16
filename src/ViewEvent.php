@@ -17,11 +17,9 @@ class ViewEvent extends RequestEvent
     ) {
         parent::__construct($request);
 
-        if (is_array($data)) {
-            $data = new ArrayObject($data);
-        }
-
-        $this->data = $data;
+        $this->data = is_array($data)
+            ? new ArrayObject($data)
+            : $data;
     }
 
     public function getData(): ArrayObject
